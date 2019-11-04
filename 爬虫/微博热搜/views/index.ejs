@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>template</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <!-- <h2><%=author%></h2> -->
+    <ul>
+        <%for(let i=0;i<arr.length;i++){%>
+            <li><a href="https://s.weibo.com<%=arr[i].href%>"><%=arr[i].context%></a></li>
+        <%}%>
+    </ul>
+  </body>
+</html>

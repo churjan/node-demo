@@ -1,0 +1,24 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Kobe",
+      "sex": "Female",
+      "hobbies": [
+        "basketball",
+        "swimming",
+        "sleep"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Kobe",
+      "sex": "M",
+      "hobbies": [
+        "basketball",
+        "swimming",
+        "sleep"
+      ]
+    }
+  ]
+}

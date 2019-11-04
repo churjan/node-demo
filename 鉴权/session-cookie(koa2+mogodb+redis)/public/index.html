@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div><input v-model="username" /></div>
+      <div><input v-model="password" /></div>
+      <div><input v-model="nickname" /></div>
+      <div><input v-model="age" /></div>
+      <div>
+        <button @click="register">register</button>
+        <button @click="login">login</button>
+        <button @click="getUser">GetUser</button>
+      </div>
+      <div>
+        <button @click="logs=[]">Clear Log</button>
+      </div>
+      <!-- 日志 -->
+      <ul>
+        <li v-for="(log,idx) in logs" :key="idx">
+          {{ log }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      // axios.defaults.withCredentials = true
+      axios.interceptors.response.use(response => {
+        app.logs.push(JSON.stringify(response.data))
+        return response
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          username: 'test',
+          password: '123456',
+          logs: [],
+          nickname: '',
+          age: ''
+        },
+        methods: {
+          register: async function() {
+            await axios.post('/register', {
+              username: this.username,
+              password: this.password,
+              nickname: this.nickname,
+              age: this.age
+            })
+          },
+          login: async function() {
+            await axios.post('/login', {
+              username: this.username,
+              password: this.password
+            })
+          },
+          getUser: async function() {
+            await axios.get('/getUserInfo')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

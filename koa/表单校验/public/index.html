@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div><input v-model="username" /></div>
+      <div><input v-model="password" /></div>
+      <div>
+        <button @click="login">login</button>
+      </div>
+      <div>
+        <button @click="logs=[]">Clear Log</button>
+      </div>
+      <!-- 日志 -->
+      <ul>
+        <li v-for="(log,idx) in logs" :key="idx">
+          {{ log }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      axios.interceptors.response.use(response => {
+        app.logs.push(JSON.stringify(response.data))
+        return response
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          username: 'test',
+          password: '123456',
+          logs: []
+        },
+        methods: {
+          login: async function() {
+            const params = new URLSearchParams()
+            params.append('username', this.username)
+            params.append('password', this.password)
+            axios({
+              method: 'POST',
+              url: '/login',
+              headers: { 'content-type': 'application/x-www-form-urlencoded' },
+              data: params
+            })
+            // axios({
+            //   method: 'POST',
+            //   url: '/login',
+            //   data: {
+            //     username: this.username,
+            //     password: this.password
+            //   }
+            // })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

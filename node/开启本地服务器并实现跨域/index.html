@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      // axios(
+      // .get('/users')
+      // .then(res => res.data)
+      // .then(users => console.log(users))
+      axios.defaults.baseURL = 'http://localhost:3000'
+      axios.defaults.withCredentials = true
+      ;(async () => {
+        const res = await axios.get('/users', {
+          headers: { Authorization: 'Bear-token' }
+        })
+        console.log('data', res.data)
+      })()
+    </script>
+  </body>
+</html>
