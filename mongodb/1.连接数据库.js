@@ -8,7 +8,10 @@ const url = 'mongodb://localhost:27017'
 const dbName = 'test'
 
 ;(async function() {
-  const client = new MongoClient(url, { useNewUrlParser: true })
+  const client = new MongoClient(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   //创建链接
   let ret
   ret = await client.connect()

@@ -5,6 +5,6 @@ const StudentSchema = mongoose.Schema({
   name: String,
   age: Number
 })
-let StudentModel = connection.model('Student', StudentSchema)
+let StudentModel = connection.model('student', StudentSchema)
 
 module.exports = StudentModel
