@@ -6,7 +6,7 @@
     host: 'localhost',
     user: 'root',
     password: 'example', // 修改为你的密码
-    database: 'kaikeba' // 请确保数据库存在
+    database: 'test', // 请确保数据库存在
   }
 
   const connection = await mysql.createConnection(cfg)
